@@ -1,0 +1,6 @@
+config.json
+enabled
+env/
+errors.txt
+log.txt
+*.pid

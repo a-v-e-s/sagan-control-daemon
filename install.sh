@@ -1,17 +1,14 @@
 #!/usr/bin/env bash
 
 set -e
-sudo apt-get -y install hostapd dnsmasq zip &> /dev/null
+sudo apt -y install hostapd dnsmasq zip &> /dev/null
 sudo systemctl disable hostapd &> /dev/null
 sudo systemctl disable dnsmasq &> /dev/null
 
 # Set up virtual environment
-sudo pip3 install virtualenv
-# check there is a readable file called env/bin/activate
-if [ ! -r env/bin/activate ]; then
-    virtualenv --system-site-packages -p python3 env
-fi
-. env/bin/activate
+mkdir env
+python3 -m venv --system-site-packages env
+source env/bin/activate
 pip install -r requirements.txt
 
 user="pi"
@@ -47,4 +44,3 @@ sudo cp dnsmasq.conf /etc/
 sudo cp hosts /etc/
 
 sudo systemctl daemon-reload
-
