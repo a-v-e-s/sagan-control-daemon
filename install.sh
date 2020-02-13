@@ -6,10 +6,10 @@ sudo systemctl disable hostapd &> /dev/null
 sudo systemctl disable dnsmasq &> /dev/null
 
 # Set up virtual environment
+pip install -r requirements.txt
 mkdir env
 python3 -m venv --system-site-packages env
 source env/bin/activate
-pip install -r requirements.txt
 
 user="pi"
 if ! id ${user} >/dev/null 2>&1; then
