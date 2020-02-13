@@ -1,4 +1,6 @@
 rc_local.sh appears to be *the* startup script.
+Copied its contents to /etc/rc.local
+Run it on startup with crontab
     It calls start.sh (and check-board.sh which is MIA)
         start.sh calls run-notifier.sh and run.sh
             run-notifier.sh calls led_notify.py
@@ -6,5 +8,23 @@ rc_local.sh appears to be *the* startup script.
                 sagan-control-daemon.py calls server.py
 
 I may need to install the python modules in requirements.txt
+requests is installed.
+websocket-client now installed
+sagan is installed
 
 Does config.json need to be cleared?
+
+why is lxpanel consuming so many resources?
+should i disable it? isn't this thing supposed to be running headless anyway?
+is the access-point the only reason it takes so many resources? I think it is.
+Commented out lightdm command in /etc/X11/default-display-manager to try working without it.
+This screwed things up. need to fix xorg display size. 
+
+is check-board.sh still necessary? I don't think it is.
+it removes duplicates of files that are not duplicated in the current sagan python package
+its if conditions return false on the current debian 10 sagan board.
+
+rc-local.service starts /etc/rc.local automatically.
+I don't think I need a crontab for it.
+
+why does "sudo shutdown -r now" sometimes get stuck with "dhcpcd.service" displaying on screen?
