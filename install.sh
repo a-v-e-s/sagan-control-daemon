@@ -1,14 +1,17 @@
 #!/usr/bin/env bash
 
 set -e
-sudo apt -y install hostapd dnsmasq zip &> /dev/null
+sudo apt update
+sudo apt upgrade
+sudo apt autoremove
+sudo apt -y install libi2c-dev libffi-dev hostapd dnsmasq zip &> /dev/null
 sudo systemctl disable hostapd &> /dev/null
 sudo systemctl disable dnsmasq &> /dev/null
 
 # Set up virtual environment
-pip install -r requirements.txt
-mkdir env
-python3 -m venv --system-site-packages env
+pip3 install -r requirements.txt
+sudo mkdir env
+sudo python3 -m venv --system-site-packages env
 source env/bin/activate
 
 user="pi"
@@ -43,4 +46,12 @@ sudo cp init.d_hostapd /etc/init.d/hostapd
 sudo cp dnsmasq.conf /etc/
 sudo cp hosts /etc/
 
-sudo systemctl daemon-reload
+sudo systemctl stop dhcpcd
+sudo systemctl disable dhcpcd
+sudo systemctl unmask hostapd
+sudo systemctl enable hostapd
+sudo systemctl unmask dnsmasq
+sudo systemctl enable dnsmasq
+sudo systemctl start hostapd
+sudo systemctl start dnsmasq
+#sudo systemctl daemon-reload 
