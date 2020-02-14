@@ -4,9 +4,9 @@ set -e
 sudo apt update
 sudo apt upgrade
 sudo apt autoremove
-sudo apt -y install libi2c-dev libffi-dev hostapd dnsmasq zip &> /dev/null
-sudo systemctl disable hostapd &> /dev/null
-sudo systemctl disable dnsmasq &> /dev/null
+sudo apt -y install libi2c-dev libffi-dev hostapd dnsmasq zip
+sudo systemctl disable hostapd
+sudo systemctl disable dnsmasq
 
 # Set up virtual environment
 pip3 install -r requirements.txt
