@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 set -e
-sudo apt update
-sudo apt upgrade
-sudo apt autoremove
+sudo apt -y update
+sudo apt -y upgrade
+sudo apt -y autoremove
 sudo apt -y install libi2c-dev libffi-dev hostapd dnsmasq zip
 sudo systemctl disable hostapd
 sudo systemctl disable dnsmasq
@@ -12,7 +12,7 @@ sudo systemctl disable dnsmasq
 pip3 install -r requirements.txt
 sudo mkdir env
 sudo python3 -m venv --system-site-packages env
-source env/bin/activate
+#source env/bin/activate
 
 user="pi"
 if ! id ${user} >/dev/null 2>&1; then
@@ -46,6 +46,9 @@ sudo cp init.d_hostapd /etc/init.d/hostapd
 sudo cp dnsmasq.conf /etc/
 sudo cp hosts /etc/
 
+sudo cp interfaces-ap /etc/network/interfaces.d/
+
+sudo systemctl daemon-reload
 sudo systemctl stop dhcpcd
 sudo systemctl disable dhcpcd
 sudo systemctl unmask hostapd
@@ -57,3 +60,5 @@ sudo systemctl start dnsmasq
 #sudo systemctl daemon-reload 
 
 sudo bash start.sh
+sudo touch enabled
+#sudo shutdown -r now
