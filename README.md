@@ -6,6 +6,7 @@
 <p>Boot your Raspberry Pi from the SD card and connect to wifi</p>
 <p>(It may show a blue screen with "Resized root filesystem, rebooting in 5 seconds" on the first bootup. This is okay.)</p>
 <p>Go through the setup process. You may skip the software updates since they are convered in the install script.</p>
+<p>Then, in a terminal, enter:
 <p>`sudo git-clone https://github.com/a-v-e-s/sagan-control-daemon /opt/sagan-control-daemon`</p>
 <p>`cd /opt/sagan-control-daemon`</p>
 <p>`sudo bash install.sh`</p>
