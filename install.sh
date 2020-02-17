@@ -57,8 +57,3 @@ sudo systemctl unmask dnsmasq
 sudo systemctl enable dnsmasq
 sudo systemctl start hostapd
 sudo systemctl start dnsmasq
-#sudo systemctl daemon-reload 
-
-sudo bash start.sh
-sudo touch enabled
-#sudo shutdown -r now
