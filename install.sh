@@ -34,6 +34,8 @@ if [ ! -e telemetry ]; then
 fi
 sudo chown ${user}:${user} telemetry
 
+touch enabled
+
 # Set up start up script
 sudo cp rc_local.sh /etc/rc.local
 sudo chmod +x /etc/rc.local
